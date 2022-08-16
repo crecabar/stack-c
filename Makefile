@@ -56,7 +56,8 @@ dirs :
 
 
 main: $(LIST_LIB_STATIC) $(OBJ)/main.o
-	$(LD) $(LDFLAGS) -o $(BIN)/main $(OBJ)/main.o
+	$(MD) $(BIN)
+	$(CC) $(LDFLAGS) -o $(BIN)/main $(OBJ)/main.o
 
 $(LIST_LIB_STATIC) : $(OBJS)
 	$(AR) $(LIST_LIB_STATIC) $(OBJS)

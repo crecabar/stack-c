@@ -2,30 +2,67 @@
 #include <stdlib.h>
 #include <LinkedList.h>
 
-int createList(list *l)
+int createList(List *l, char value)
 {
-    if(l == NULL) {
-        l = (list*)malloc(sizeof(_list));
+    Node *node;
+    if(*l == NULL) {
+        node = createNode(value, NULL);
+        *l = node;
+
         return 0;
     }
 
     return -1;
 }
 
-int printList(const list *l)
+int printList(const List l)
+{
+    int count = 0;
+    List p = l;
+    if (l == NULL) {
+        return -1;
+    } else {
+        while (p != NULL) {
+            printNode(*p);
+            count ++;
+            p = p->link;
+        }
+    }
+
+    return count;
+}
+
+int appendValue(List *l, char value)
+{
+    if (*l == NULL) {
+        printf("I shouldn't be here\n");
+        return createList(l, value);
+    } else {
+        Node *node = createNode(value, *l);
+        *l = node;
+
+        return 0;
+    }
+
+    return -1;
+}
+
+int deleteList(List *l)
 {
 
     return -1;
 }
 
-int appendValue(list *l, char value)
+void printNode(Node node)
 {
-
-    return -1;
+    printf("| %c | %s ", node.data, (node.link == NULL ? "NULL\n" : "->"));
 }
 
-int deleteList(list *l)
+Node *createNode(char value, Node *link)
 {
+    Node *node = (Node*)malloc(sizeof(Node));
+    (*node).data = value;
+    (*node).link = link;
 
-    return -1;
+    return node;
 }

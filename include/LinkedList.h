@@ -2,17 +2,20 @@
 #ifndef __LIST_H__
 #define __LIST_H__
 
-typedef struct _list
+struct _node
 {
-    char byte;
-    struct _list *link;
-}_list;
+    char data;
+    struct _node *link;
+};
 
-typedef _list* list;
+typedef struct _node Node;
+typedef Node *List;
 
-int createList(list *l);
-int printList(const list *l);
-int appendValue(list *l, char value);
-int deleteList(list *l);
+int createList(List *l, char value);
+int printList(const List l);
+int appendValue(List *l, char value);
+int deleteList(List *l);
+void printNode(Node node);
+Node *createNode(char value, Node *link);
 
 #endif
